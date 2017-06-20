@@ -11,7 +11,7 @@ public final class Customer {
     public static class CustomerEntry implements BaseColumns {
         public static final String TABLE_NAME = "customer";
         public static final String COLUMN_NAME_NAME = "name";
-        public static final String COLUMN_NAME_TEL = "tel";
+        public static final String COLUMN_NAME_PHONE = "phone";
         public static final String COLUMN_NAME_ADDRESS = "address";
         public static final String COLUMN_NAME_LOCATION = "location";
     }

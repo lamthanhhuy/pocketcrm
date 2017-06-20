@@ -18,6 +18,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import cuscsoftware.pocketcrm.adapter.CustomerAdapter;
+import cuscsoftware.pocketcrm.db.CustomerDbHelper;
 import cuscsoftware.pocketcrm.model.Customer;
 import cuscsoftware.pocketcrm.model.CustomerManager;
 
@@ -26,12 +27,14 @@ public class MainActivity extends AppCompatActivity
 
     private ListView lvCustomer;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CustomerManager customerManager = new CustomerManager();
+        CustomerManager customerManager = new CustomerManager(this);
+        //customerManager.add(new Customer("Sasaki Juji", "090666257"));
         ArrayList<Customer> customers = customerManager.loadCustomers();
         CustomerAdapter customerAdapter = new CustomerAdapter(this, R.layout.customer_list, customers);
         lvCustomer = (ListView)findViewById(R.id.lcCustomer);

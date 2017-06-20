@@ -17,11 +17,20 @@ public class CustomerDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        String createCustomerTable = "CREATE TABLE `customer` (\n" +
+                "\t`id`\tINTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
+                "\t`name`\tVARCHAR(50) NOT NULL,\n" +
+                "\t`phone`\tVARCHAR(50),\n" +
+                "\t`address`\tVARCHAR(250),\n" +
+                "\t`location`\tVARCHAR(50),\n" +
+                "\t`sort`\tINTEGER DEFAULT \"0\"\n" +
+                ");";
+        db.execSQL(createCustomerTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS customer");
+        onCreate(db);
     }
 }
