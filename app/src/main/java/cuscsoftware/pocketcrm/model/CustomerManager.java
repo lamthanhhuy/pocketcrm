@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import cuscsoftware.pocketcrm.db.CustomerDbHelper;
+import cuscsoftware.pocketcrm.db.Customer.CustomerEntry;
 
 /**
  * Created by Lam Thanh Huy on 2017/06/08.
@@ -33,19 +34,14 @@ public class CustomerManager {
             }while (cursor.moveToNext());
         }
 
-
-//        for (int i = 1; i < 50; i++) {
-//            Customer customer = new Customer("Customer " + String.valueOf(i), "090123456"+String.valueOf(i));
-//            customers.add(customer);
-//        }
         return  customers;
     }
 
     public void add(Customer customer)
     {
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", customer.getName());
+        contentValues.put(CustomerEntry.COLUMN_NAME_NAME, customer.getName());
         SQLiteDatabase db = customerDbHelper.getWritableDatabase();
-        db.insert("customer", null, contentValues);
+        db.insert(CustomerEntry.TABLE_NAME, null, contentValues);
     }
 }
