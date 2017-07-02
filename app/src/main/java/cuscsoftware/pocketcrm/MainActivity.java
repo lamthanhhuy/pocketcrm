@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         CustomerManager customerManager = new CustomerManager(this);
         //customerManager.add(new Customer("Sasaki Juji", "090666257"));
+
         ArrayList<Customer> customers = customerManager.loadCustomers();
         CustomerAdapter customerAdapter = new CustomerAdapter(this, R.layout.customer_list, customers);
         lvCustomer = (ListView)findViewById(R.id.lcCustomer);
@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity
 
         return true;
     }
+
 
 
 }
