@@ -1,10 +1,14 @@
 package cuscsoftware.pocketcrm;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +20,7 @@ public class AddCustomerActivity extends Activity {
     private View view;
     TextView tvName;
     TextView tvPhone;
+    ImageView ivPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +28,7 @@ public class AddCustomerActivity extends Activity {
         setContentView(R.layout.activity_add_customer);
         tvName = (TextView) findViewById(R.id.name);
         tvPhone = (TextView) findViewById(R.id.phone);
+        ivPhoto = (ImageView) findViewById(R.id.photo);
     }
 
     @Override
@@ -40,6 +46,25 @@ public class AddCustomerActivity extends Activity {
         CustomerManager customerManager = new CustomerManager(this);
         customerManager.add(new Customer(tvName.getText().toString(), tvPhone.getText().toString()));
         Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
+    }
+
+    public void changeImage(View view){
+        Toast.makeText(this, "image click", Toast.LENGTH_SHORT).show();
+        Intent photopicker = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(photopicker, 1);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+        switch(requestCode) {
+            case 1:
+                if(resultCode == RESULT_OK){
+                    Uri selectedImage = imageReturnedIntent.getData();
+                    ivPhoto.setImageURI(selectedImage);
+                }
+
+                break;
+        }
     }
 
 }

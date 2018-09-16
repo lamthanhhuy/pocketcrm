@@ -38,10 +38,12 @@ tools:context="cuscsoftware.pocketcrm.AddCustomerActivity">
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/photo"
                     android:layout_width="117dp"
                     android:layout_height="96dp"
                     android:visibility="visible"
+                    android:clickable="true"
+                    android:onClick="changeImage"
                     android:src="@drawable/customer_default_avatar"/>
 
                 <AutoCompleteTextView
