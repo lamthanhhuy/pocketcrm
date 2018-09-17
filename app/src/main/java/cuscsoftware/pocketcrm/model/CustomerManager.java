@@ -22,13 +22,13 @@ public class CustomerManager {
     }
     public ArrayList<Customer> loadCustomers()
     {
-        String sql = "SELECT name, phone FROM customer";
+        String sql = "SELECT name, phone, photo FROM customer";
         SQLiteDatabase db = customerDbHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery(sql,null);
         ArrayList<Customer> customers = new ArrayList<Customer>();
         if (cursor.moveToFirst()) {
             do {
-                Customer customer = new Customer(cursor.getString(0), cursor.getString(1));
+                Customer customer = new Customer(cursor.getString(0), cursor.getString(1), cursor.getBlob(2));
                 customers.add(customer);
 
             }while (cursor.moveToNext());
@@ -41,6 +41,8 @@ public class CustomerManager {
     {
         ContentValues contentValues = new ContentValues();
         contentValues.put(CustomerEntry.COLUMN_NAME_NAME, customer.getName());
+        contentValues.put(CustomerEntry.COLUMN_NAME_PHONE, customer.getPhoneNumber());
+        contentValues.put(CustomerEntry.COLUMN_NAME_PHOTO, customer.getPhoto());
         SQLiteDatabase db = customerDbHelper.getWritableDatabase();
         db.insert(CustomerEntry.TABLE_NAME, null, contentValues);
     }

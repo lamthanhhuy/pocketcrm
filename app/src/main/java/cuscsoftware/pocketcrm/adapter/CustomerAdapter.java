@@ -1,6 +1,8 @@
 package cuscsoftware.pocketcrm.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -58,6 +60,8 @@ public class CustomerAdapter extends android.widget.ArrayAdapter<Customer> {
         //viewHolder.imAvatar.;
         viewHolder.tvName.setText(customer.getName());
         viewHolder.tvNumberPhone.setText(customer.getPhoneNumber());
+        Bitmap bm = BitmapFactory.decodeByteArray(customer.getPhoto(), 0, customer.getPhoto().length);
+        viewHolder.imAvatar.setImageBitmap(bm);
         return convertView;
     }
 }

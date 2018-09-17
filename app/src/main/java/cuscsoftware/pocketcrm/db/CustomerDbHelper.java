@@ -23,6 +23,7 @@ public class CustomerDbHelper extends SQLiteOpenHelper {
                 "\t`phone`\tVARCHAR(50),\n" +
                 "\t`address`\tVARCHAR(250),\n" +
                 "\t`location`\tVARCHAR(50),\n" +
+                "\t`photo`\tBLOB,\n" +
                 "\t`sort`\tINTEGER DEFAULT \"0\"\n" +
                 ");";
         db.execSQL(createCustomerTable);

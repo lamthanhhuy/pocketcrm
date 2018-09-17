@@ -1,6 +1,8 @@
 package cuscsoftware.pocketcrm;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
@@ -11,6 +13,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
 
 import cuscsoftware.pocketcrm.model.Customer;
 import cuscsoftware.pocketcrm.model.CustomerManager;
@@ -44,7 +48,11 @@ public class AddCustomerActivity extends Activity {
 
     public void saveCustomerButtonClick(View view){
         CustomerManager customerManager = new CustomerManager(this);
-        customerManager.add(new Customer(tvName.getText().toString(), tvPhone.getText().toString()));
+        Bitmap bitmap = ((BitmapDrawable)ivPhoto.getDrawable()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+        byte[] imageInByte = baos.toByteArray();
+        customerManager.add(new Customer(tvName.getText().toString(), tvPhone.getText().toString(), imageInByte ));
         Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
     }
 

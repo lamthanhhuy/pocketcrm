@@ -14,5 +14,6 @@ public final class Customer {
         public static final String COLUMN_NAME_PHONE = "phone";
         public static final String COLUMN_NAME_ADDRESS = "address";
         public static final String COLUMN_NAME_LOCATION = "location";
+        public static final String COLUMN_NAME_PHOTO = "photo";
     }
 }

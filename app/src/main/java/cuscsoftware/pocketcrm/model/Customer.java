@@ -7,10 +7,12 @@ package cuscsoftware.pocketcrm.model;
 public class Customer {
     private String name;
     private String phoneNumber;
+    private byte[] photo;
 
-    public Customer(String name, String phoneNumber) {
+    public Customer(String name, String phoneNumber, byte[] photo) {
         this.name = name;
         this.phoneNumber = phoneNumber;
+        this.photo = photo;
     }
 
     public String getName() {
@@ -27,5 +29,13 @@ public class Customer {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 }
